@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <a href="image.html">Image Search</a>
+        <a href="advanced.html">Advanced Search</a>
+    </div>
+    <div class="main">
+        <form action="https://www.google.com/search">
+            <input type="text" name="q" class="search-bar" placeholder="Search...">
+            <div class="buttons">
+                <input type="submit" value="Google Search">
+                <input type="button" value="I'm Feeling Lucky" onclick="luckySearch()">
+            </div>
+        </form>
+    </div>
+    <script>
+        function luckySearch() {
+            const query = document.querySelector('.search-bar').value;
+            window.location.href = `https://www.google.com/search?q=${query}&btnI=I`;
+        }
+    </script>
+</body>
+</html>
