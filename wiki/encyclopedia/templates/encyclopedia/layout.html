@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Encyclopedia{% endblock %}</title>
+</head>
+<body>
+    <div id="sidebar">
+        <h2>Wiki</h2>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'new_page' %}">Create New Page</a></li>
+            <li><a href="{% url 'random_page' %}">Random Page</a></li>
+        </ul>
+        <form action="{% url 'search' %}" method="get">
+            <input type="text" name="q" placeholder="Search Encyclopedia">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div id="main">
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+</html>
