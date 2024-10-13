@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <h1>Submit a New Recipe</h1>
+    <form method="post" enctype="multipart/form-data" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.title.label_tag }}
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            {{ form.ingredients.label_tag }}
+            {{ form.ingredients }}
+        </div>
+        <div class="form-group">
+            {{ form.instructions.label_tag }}
+            {{ form.instructions }}
+        </div>
+        <div class="form-group">
+            {{ form.image.label_tag }}
+            {{ form.image }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
+    </form>
+{% endblock %}

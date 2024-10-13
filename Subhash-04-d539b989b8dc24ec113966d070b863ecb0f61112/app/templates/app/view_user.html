@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <h1>{{ user.username }}</h1>
+    <p>
+        {% if user != request.user %}
+            <a href="{% url 'follow_user' user.id %}" class="btn btn-primary">
+                {% if request.user.profile in user.profile.followed_by.all %}
+                    Unfollow
+                {% else %}
+                    Follow
+                {% endif %}
+            </a>
+        {% endif %}
+    </p>
+    <p><strong>Followers:</strong> {{ user.profile.followed_by.count }}</p>
+    <p><strong>Following:</strong> {{ user.profile.follows.count }}</p>
+    <h2>Recipes</h2>
+    <ul>
+        {% for recipe in recipes %}
+            <li><a href="{% url 'view_recipe' recipe.id %}">{{ recipe.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

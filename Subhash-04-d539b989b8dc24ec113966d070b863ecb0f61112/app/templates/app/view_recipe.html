@@ -1,0 +1,30 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div class="recipe-detail">
+        <h1>{{ recipe.title }}</h1>
+        <p><strong>Author:</strong> <a href="{% url 'view_user' recipe.author.id %}">{{ recipe.author }}</a></p>
+        <p><strong>Ingredients:</strong></p>
+        <p>{{ recipe.ingredients }}</p>
+        <p><strong>Instructions:</strong></p>
+        <p>{{ recipe.instructions }}</p>
+        {% if recipe.image %}
+            <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+        <p>
+            <a href="{% url 'like_recipe' recipe.id %}">{% if user in recipe.likes.all %}Unlike{% else %}Like{% endif %}</a>
+            {{ recipe.total_likes }} likes
+        </p>
+        <p>
+            <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
+            {% if user.is_authenticated and user == recipe.author %}
+                <form action="{% url 'delete_recipe' recipe.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            {% endif %}
+        </p>
+    </div>
+{% endblock %}
